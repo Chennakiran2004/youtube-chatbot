@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8f9fb" />
+    <title>YouTube Transcript Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar"><a class="brand" href="#" aria-label="Home"><span class="brand-icon">▶</span><span>Video<span class="brand-accent">Chat</span></span></a><span class="top-note"><i></i> Ask questions about any YouTube video</span></header>
+    <main class="page">
+      <section class="intro"><div class="eyebrow"><span></span> YOUTUBE TRANSCRIPT ASSISTANT</div><h1>Understand any video<br /><span>in a conversation.</span></h1><p>Paste a YouTube link. We’ll get its transcript ready so you can ask questions and find the important parts faster.</p></section>
+
+      <section class="upload-card" aria-labelledby="uploadTitle">
+        <div class="card-heading"><div class="step-number">1</div><div><h2 id="uploadTitle">Add a YouTube video</h2><p>Paste a public video link below to get started.</p></div></div>
+        <form id="videoForm" class="upload-form">
+          <label class="sr-only" for="videoUrl">YouTube video link</label>
+          <div class="url-input"><span class="link-icon">↗</span><input id="videoUrl" type="url" placeholder="https://www.youtube.com/watch?v=..." required /><button id="pasteButton" class="paste-button" type="button">Paste</button></div>
+          <button class="primary-button" type="submit"><span class="button-label">Get transcript</span><span class="button-arrow">→</span></button>
+        </form>
+        <div class="form-error" id="formError" role="alert"></div>
+        <div class="upload-hint"><span>ⓘ</span> Videos need captions or subtitles for transcript extraction.</div>
+        <div class="processing" id="processing" hidden aria-live="polite">
+          <div class="processing-row"><span class="loader" aria-hidden="true"></span><div><strong id="processingTitle">Preparing video…</strong><small id="processingDetail">This preview simulates the transcript workflow.</small></div><span class="processing-percent" id="processingPercent">0%</span></div>
+          <div class="progress-track"><span id="progressBar"></span></div>
+          <div class="processing-stages"><span class="processing-stage current" data-stage="0">Video</span><span class="processing-stage" data-stage="1">Transcript</span><span class="processing-stage" data-stage="2">Ready to chat</span></div>
+        </div>
+      </section>
+
+      <section class="results" id="results" hidden>
+        <div class="status-card">
+          <div class="status-heading"><div class="check-icon">✓</div><div><h2>Transcript ready</h2><p id="readyUrl">Your video transcript is ready.</p></div><button id="changeVideo" class="change-button" type="button">Change video</button></div>
+          <div class="status-steps"><div class="status-step"><span class="step-check">✓</span><span><strong>Video link received</strong><small>Valid YouTube video</small></span><span class="step-state">Complete</span></div><div class="status-step"><span class="step-check">✓</span><span><strong>Transcript extracted</strong><small id="transcriptSummary">Transcript is ready to use</small></span><span class="step-state">Complete</span></div></div>
+          <div class="transcript-preview"><div class="preview-label"><span>TRANSCRIPT PREVIEW</span><button id="toggleTranscript" type="button">Show transcript <span>⌄</span></button></div><p id="transcriptText" hidden></p></div>
+          <div class="preview-disclaimer">Answers are generated from the extracted transcript and may miss details. Check the video for context.</div>
+        </div>
+
+        <section class="chat-card" aria-labelledby="chatTitle">
+          <div class="card-heading"><div class="step-number">2</div><div><h2 id="chatTitle">Ask questions</h2><p>Ask about the video, its key ideas, or a specific moment.</p></div></div>
+          <div class="chat-content" id="chatContent"><div class="welcome"><span class="assistant-icon">✦</span><div><strong>What would you like to know?</strong><p>Try asking a question about this video.</p></div></div><div class="suggestions"><button type="button">What is this video about?</button><button type="button">Summarize the key points</button><button type="button">What does the speaker say about…?</button></div></div>
+          <form id="questionForm" class="question-form"><label class="sr-only" for="questionInput">Ask a question</label><textarea id="questionInput" rows="1" placeholder="Type your question here…"></textarea><button type="submit" aria-label="Send question">↑</button></form>
+          <div class="chat-note">Answers should be based on the video transcript.</div>
+        </section>
+      </section>
+      <footer>Made for learning at your own pace <span>·</span> YouTube Transcript Chat</footer>
+    </main>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
